@@ -38,8 +38,8 @@ def create_app():
         doc="/docs"
     )
 
-    # Importar modelos para que los detecte Flask-Migrate
-    from app import models  # 👈 Importante para detectar las tablas
+   
+    from app import models  
 
     # Registrar namespace de usuarios
     from app.routes.user_routes import ns as users_namespace
