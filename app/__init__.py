@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_restx import Api
+from flask_migrate import Migrate  # Importar Flask-Migrate
 from dotenv import load_dotenv
 import os
 
@@ -25,6 +26,9 @@ def create_app():
     # Inicializar extensiones
     db.init_app(app)
     CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+
+    # Inicializar Flask-Migrate
+    migrate = Migrate(app, db)
 
     # Configuración de Swagger
     api = Api(
