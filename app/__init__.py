@@ -26,7 +26,7 @@ def create_app():
 
     # Inicializar extensiones
     db.init_app(app)
-    migrate.init_app(app, db)  # 🔥 Aquí se conecta Flask-Migrate
+    migrate.init_app(app, db)  # 🔥 Aquí conectamos Flask-Migrate con la app y la base de datos
     CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
     # Configurar Swagger con flask-restx
@@ -38,8 +38,8 @@ def create_app():
         doc="/docs"
     )
 
-   
-    from app import models  
+    # Registrar modelos de base de datos
+    from app import models  # Asegúrate de que models.py contenga tus modelos de SQLAlchemy
 
     # Registrar namespace de usuarios
     from app.routes.user_routes import ns as users_namespace
